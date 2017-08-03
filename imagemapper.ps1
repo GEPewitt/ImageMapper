@@ -24,6 +24,9 @@
 .EXAMPLE
     imagemapper.ps1 -source "C:\Case\pics.zip" -target "C:\Cases\001\Images"
     Example showing how to run script against a zip file containing images
+.EXAMPLE
+    imagemapper.ps1 -source "C:\Case\pics.zip" -target "C:\Cases\001\Images" -TargetFileName 20170725-001
+    Example showing how to run script specifying target and target file name
 #>
 
 [CmdletBinding()]
@@ -311,8 +314,8 @@ If ($Source -ne '')
                 $LonOrt = $LonOrt + $LonDec
 
                 # Add information to KML File
-                $TestDesc = "$ImgBaseName`r`n$ImgFolderPath`r`n`r`nCreate Time: $ImgDateCreated `r`nAccess Time: $ImgDateAccessed`r`nModified Time: $ImgDateModified`r`n`r`nMD5 Hash: $ImgMD5`r`nSHA1 Hash: $ImgSHA`r`nSHA256 Hash: $ImgSHA256`r`n`r`nLatitude: $Latort`r`nLongitude: $LonOrt`r`nAltitude: $Alt`r`nAbove Sea Level: $SeaLev"
-                AddKMLPlacemark $ImgName $TestDesc $LonOrt $LatOrt $Alt
+                $PlaceMrkDesc = "$ImgBaseName`r`n$ImgFolderPath`r`n`r`nCreate Time: $ImgDateCreated `r`nAccess Time: $ImgDateAccessed`r`nModified Time: $ImgDateModified`r`n`r`nMD5 Hash: $ImgMD5`r`nSHA1 Hash: $ImgSHA`r`nSHA256 Hash: $ImgSHA256`r`n`r`nLatitude: $Latort`r`nLongitude: $LonOrt`r`nAltitude: $Alt`r`nAbove Sea Level: $SeaLev"
+                AddKMLPlacemark $ImgName $PlaceMrkDesc $LonOrt $LatOrt $Alt
 
                 # Add information to CSV File
                 AddCSV
